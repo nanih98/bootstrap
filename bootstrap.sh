@@ -29,7 +29,7 @@ chmod +x /usr/bin/docker-compose
 # Set journald driver for docker 
 
 cp daemon.json /etc/docker/
-
+systemctl restart docker
 
 # Setup email alert for ssh login 
 
