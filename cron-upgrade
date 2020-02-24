@@ -1,4 +1,4 @@
 # Upgrade system , necessary specially for security updates
 #  unattended-upgrade --dry-run -d # for check 
  
-unattended-upgrade -d > /var/log/upgrade.log
+unattended-upgrade -d &> /var/log/upgrade.log

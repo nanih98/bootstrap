@@ -2,13 +2,16 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-PACKAGES="curl git cron monit python3-gi unattended-upgrades dbus jq clamav"
+PACKAGES="curl git cron monit python3-gi unattended-upgrades dbus jq clamav vim"
 
 
 # Install packages 
 
 apt-get install $PACKAGES -y 
 
+# Copy custom vim configuration
+
+cp vimrc /etc/vim/
 
 # Install docker
 curl https://get.docker.com | sh 
@@ -18,6 +21,10 @@ systemctl start docker
 # Install docker-compose (only for root)
 curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
 chmod +x /usr/bin/docker-compose
+
+# Set journald driver for docker 
+
+cp daemon.json /etc/docker/
 
 
 # Setup email alert for ssh login 
@@ -42,7 +49,12 @@ cp clamscan-email.py /usr/bin/malwaremail
 chown root:root /usr/bin/malwaremail
 chmod 700 /usr/bin/malwaremail
 
+### Copy the script of clamav that will execute the cron to scan the directories
 
+cp clam-scan.sh /root/
+chmod 700 /root/clam-scan.sh
+# Copy the cron to /etc/cron.d that will execute every day the script at 00:00
+cp cron-clamscan /etc/cron.d/clamscan
 
 # Configure monit
 echo "Configure monit"
