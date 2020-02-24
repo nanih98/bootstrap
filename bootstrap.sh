@@ -7,11 +7,15 @@ PACKAGES="curl git cron monit python3-gi unattended-upgrades dbus jq clamav vim"
 
 # Install packages 
 
-apt-get install $PACKAGES -y 
+apt-get update -y && apt-get install $PACKAGES -y 
 
 # Copy custom vim configuration
 
 cp vimrc /etc/vim/
+
+# Copy the cron for daily upgrades at 1:00
+
+cp cron-upgrade /etc/cron.d/upgrade
 
 # Install docker
 curl https://get.docker.com | sh 
