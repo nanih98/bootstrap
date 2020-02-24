@@ -15,6 +15,7 @@ cp vimrc /etc/vim/
 
 # Copy the cron for daily upgrades at 1:00
 
+mkdir /var/log/upgrade
 cp cron-upgrade /etc/cron.d/upgrade
 
 # Install docker
