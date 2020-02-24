@@ -1,5 +1,8 @@
 #!/bin/bash
 
+message="Malware found in the machine $(uname -a)"
+export message
+
 LOGFILE="/var/log/clamav/clamav-$(date +'%Y-%m-%d').log";
 DIRTOSCAN="/"; # seperar directorios si hay más de uno
 
@@ -14,7 +17,7 @@ for S in ${DIRTOSCAN}; do
  if [ "$MALWARE" -ne "0" ];then
  # using custom python script
  export LOGFILE
- python /root/init/clamscan-email.py 
+ /usr/bin/malwaremail  
  fi 
 done
 exit 0

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+subject="New SSH connection to $(uname -a)"
+export subject 
+
 message="
 	A SSH login was successful, so here are some information for security:
   	User:        "$PAM_USER"

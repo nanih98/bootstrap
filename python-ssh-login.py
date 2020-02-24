@@ -7,7 +7,7 @@ import os
 email = 'XXXXXXXXXXXX'
 password = 'XXXXXX'
 send_to_email = 'XXXXXX'
-subject = 'This is the subject' # The subject line
+subject = (os.environ["subject"])
 message = (os.environ["message"])
 
 

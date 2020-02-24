@@ -29,16 +29,20 @@ chmod 0700 /etc/pam.scripts/ssh_alert.sh
 chown root:root /etc/pam.scripts/ssh_alert.sh
 
 cp python-ssh-login.py /usr/bin/sshmail
-chmod +x /usr/bin/sshmail
+chown root:root /usr/bin/sshmail
+chmod 700 /usr/bin/sshmail
 
 echo " # SSH Alert script
 session required pam_exec.so /etc/pam.scripts/ssh_alert.sh
 " >> /etc/pam.d/sshd
 
+#Setup clamav for daily scann security && email send when a malware is found!
+
+cp clamscan-email.py /usr/bin/malwaremail
+chown root:root /usr/bin/malwaremail
+chmod 700 /usr/bin/malwaremail
 
 
-#Setup clamav for daily scann security
-freshclam
 
 # Configure monit
 echo "Configure monit"

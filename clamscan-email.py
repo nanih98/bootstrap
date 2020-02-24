@@ -1,3 +1,4 @@
+#! /usr/bin/python
 import smtplib
 import os
 from email.mime.text import MIMEText
@@ -9,12 +10,12 @@ import os.path
 email = 'XXXXX'
 password = 'XXXXX'
 send_to_email = 'XXXXX'
-subject = 'This is the subject'
-message = 'This is my message'
+subject = 'Malware found'
+message = (os.environ["message"])
 
 #File location. 
 
-file_location = os.environ["LOGFILE"]
+file_location = (os.environ["LOGFILE"])
 
 msg = MIMEMultipart()
 msg['From'] = email
