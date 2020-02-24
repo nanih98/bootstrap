@@ -73,3 +73,7 @@ cat logrotate.d-docker > /etc/logrotate.d/docker
 echo "Kernel tune"
 cat sysctl.conf > /etc/sysctl.conf
 
+# Cleanup - Remove the directory bootstrap where have you cloned. In this case, I cloned the directory on /root (git clone http://git.... /root)
+
+cd /root/ && rm -rf bootstrap/
+apt-get autoremove -y 
