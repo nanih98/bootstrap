@@ -1,7 +1,5 @@
 #!/bin/bash
 
-WHITELIST=185.104.185.91
-
 message="
 	A SSH login was successful, so here are some information for security:
   	User:        "$PAM_USER"
@@ -13,7 +11,7 @@ message="
 "
 export message
 
-if [ "${PAM_TYPE}" = 'open_session' && "${PAM_RHOST}" != $WHITELIST ]; then
+if [ "${PAM_TYPE}" = 'open_session' ]; then
 	/usr/bin/sshmail
 fi
 
