@@ -1,0 +1,10 @@
+/var/log/upgrade.log {
+    dateext
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    copytruncate
+}
+
