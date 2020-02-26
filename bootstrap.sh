@@ -27,10 +27,6 @@ systemctl start docker
 curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
 chmod +x /usr/bin/docker-compose
 
-# Set journald driver for docker 
-
-cp daemon.json /etc/docker/
-systemctl restart docker
 
 # Setup email alert for ssh login 
 
