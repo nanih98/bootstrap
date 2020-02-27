@@ -51,6 +51,11 @@ cp python-ssh-login.py /usr/bin/sshmail
 chown root:root /usr/bin/sshmail
 chmod 700 /usr/bin/sshmail
 
+cp whitelist.txt /etc/pam.scripts/
+chmod 700 /etc/pam.scripts/whitelist.txt
+echo "
+Put your ip line by line without a mask '/ 32 ..'" >> /etc/pam.scripts/whitelist.txt 
+
 echo " # SSH Alert script
 session required pam_exec.so /etc/pam.scripts/ssh_alert.sh
 " >> /etc/pam.d/sshd

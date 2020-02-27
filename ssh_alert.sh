@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-subject="New SSH connection to $(uname -n) machine"
+subject="New SSH connection to $(uname -n)-machine"
 export subject 
 
 message="
@@ -16,7 +15,10 @@ message="
 export message
 
 if [ "${PAM_TYPE}" = 'open_session' ]; then
+   if  ! grep -Fxq "$PAM_RHOST" whitelist.txt  
+   then
 	/usr/bin/sshmail
+   fi
 fi
 
 exit 0
