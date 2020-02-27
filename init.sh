@@ -41,6 +41,7 @@ fi
   if [[ "${pull}" = 'true' ]]; then  
   echo -e "Pulling all the images for containers:\n"
   docker ps | awk '{print $2}' | tail -n +2
+  echo -e "\n"
   for i in $(docker ps | awk '{print $2}' | tail -n +2); do docker pull $i ; done
   fi
 
