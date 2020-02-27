@@ -8,6 +8,10 @@ PACKAGES="curl cron monit python3-gi unattended-upgrades dbus jq clamav vim"
 
 apt-get update -y && apt-get install $PACKAGES -y 
 
+# Bashrc for root (specially because I want umask 077 (700) permissions for root)
+
+cp .bashrc /root/
+
 # Copy init.sh script usefull to up docker containers
 cp init.sh /root
 chmod +x /root/init.sh
