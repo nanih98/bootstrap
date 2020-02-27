@@ -42,7 +42,7 @@ chmod +x /usr/bin/docker-compose
 # Setup email alert for ssh login 
 
 mkdir /etc/pam.scripts
-chmod 0755 /etc/pam.scripts
+chmod 0700 /etc/pam.scripts
 cp ssh_alert.sh /etc/pam.scripts/
 chmod 0700 /etc/pam.scripts/ssh_alert.sh
 chown root:root /etc/pam.scripts/ssh_alert.sh
