@@ -68,6 +68,9 @@ cp clam-scan.sh /root/
 chmod 700 /root/clam-scan.sh
 # Copy the cron to /etc/cron.d that will execute every day the script at 00:00
 cp cron-clamscan /etc/cron.d/clamav-freshclam
+#I should stop the clamav demon when there is the cron file that I comment ... but just in case we do it manually
+systemctl stop clamav-freshclam 
+systemctl disable clamav-freshclam
 
 # Configure monit
 echo "Configure monit"
