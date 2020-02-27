@@ -25,7 +25,7 @@ cp vimrc /etc/vim/
 # Copy the cron for daily upgrades at 1:00
 
 cp upgrade.sh /root/
-chmod +x /root/upgrade.sh
+chmod 700 /root/upgrade.sh
 mkdir /var/log/upgrade
 cp cron-upgrade /etc/cron.d/upgrade
 
