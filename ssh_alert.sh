@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-subject="New SSH connection to $(uname -a)"
+subject="New SSH connection to $(uname -n) machine"
 export subject 
 
 message="
