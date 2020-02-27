@@ -6,6 +6,9 @@ export message
 LOGFILE="/var/log/clamav/clamav-$(date +'%Y-%m-%d').log";
 DIRTOSCAN="/"; # seperar directorios si hay más de uno
 
+# Refresh database
+freshclam
+
 for S in ${DIRTOSCAN}; do
  DIRSIZE=$(du -sh "$S" 2>/dev/null | cut -f1);
  echo "Starting a daily scan of "$S" directory.

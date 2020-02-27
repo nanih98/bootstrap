@@ -4,7 +4,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 PACKAGES="curl cron monit python3-gi unattended-upgrades dbus jq clamav vim"
 
-
 # Install packages 
 
 apt-get update -y && apt-get install $PACKAGES -y 
@@ -46,7 +45,8 @@ echo " # SSH Alert script
 session required pam_exec.so /etc/pam.scripts/ssh_alert.sh
 " >> /etc/pam.d/sshd
 
-#Setup clamav for daily scann security && email send when a malware is found!
+#Setup clamav for daily scann security && email send when a malware is found! Clamav freshclam service are always enabled but if you create a cron called 'clamav-freshclam' 
+#Info:There is a service called clamav-freshclam that keeps the database update active. This can consume a lot of ram, so if the cron called 'clamav-freshclam' is created, this service is deactivated and has to be done by hand. In our case we will do it by hand in the script by executing the freshclam command. Check it /etc/systemd/system/multi-user.target.wants/clamav-freshclam.service 
 
 cp clamscan-email.py /usr/bin/malwaremail
 chown root:root /usr/bin/malwaremail
@@ -57,7 +57,7 @@ chmod 700 /usr/bin/malwaremail
 cp clam-scan.sh /root/
 chmod 700 /root/clam-scan.sh
 # Copy the cron to /etc/cron.d that will execute every day the script at 00:00
-cp cron-clamscan /etc/cron.d/clamscan
+cp cron-clamscan /etc/cron.d/clamav-freshclam
 
 # Configure monit
 echo "Configure monit"
@@ -67,6 +67,7 @@ cat monitrc  > /etc/monit/monitrc
 # Configure logrotate
 echo "Configure logrotate"
 cat logrotate.d-docker > /etc/logrotate.d/docker
+cat logrotate.d-docker > /etc/logrotate.d/upgrade
 
 # Tune sysctl
 echo "Kernel tune"
