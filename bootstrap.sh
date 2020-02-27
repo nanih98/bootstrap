@@ -8,6 +8,12 @@ PACKAGES="curl cron monit python3-gi unattended-upgrades dbus jq clamav vim"
 
 apt-get update -y && apt-get install $PACKAGES -y 
 
+# Copy init.sh script usefull to up docker containers
+cp init.sh /root
+chmod +x /root/init.sh
+chown root:root /root/init.sh
+chmod 700 /root/init.sh 
+
 # Copy custom vim configuration
 
 cp vimrc /etc/vim/
