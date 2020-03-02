@@ -16,6 +16,10 @@ apt-get update -y && apt-get install $PACKAGES -y
 
 cp .bashrc /root/
 
+# Custom editor
+rm -f /etc/alternatives/editor
+ln -s /usr/bin/vim /etc/alternatives/editor
+
 # Copy init.sh script usefull to up docker containers
 cp init.sh /root
 chmod +x /root/init.sh
