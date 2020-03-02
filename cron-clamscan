@@ -1,1 +1,1 @@
-0 00 * * * root nice -n 10 ionice -c2 -n 7 /root/clam-scan.sh
+0 00 * * * root nice -n 10 ionice -c2 -n 7 /root/clam-scan.sh > /var/log/clamav/clamav-$(date +'%Y-%m-%d').log
