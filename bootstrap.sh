@@ -6,6 +6,10 @@ PACKAGES="curl cron monit python3-gi unattended-upgrades dbus jq clamav vim"
 
 # Install packages 
 
+cp -a /etc/apt/sources.list /etc/apt/sources.list.backup
+
+cp sources.list /etc/apt
+
 apt-get update -y && apt-get install $PACKAGES -y 
 
 # Bashrc for root (specially because I want umask 077 (700) permissions for root)
