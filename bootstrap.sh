@@ -2,7 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-PACKAGES="curl cron monit python3-gi unattended-upgrades dbus jq clamav vim"
+PACKAGES="curl cron monit python3-gi unattended-upgrades dbus jq clamav vim neofetch figlet"
 
 # Install packages 
 
