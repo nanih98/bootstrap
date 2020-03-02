@@ -88,7 +88,7 @@ cat monitrc  > /etc/monit/monitrc
 # Configure logrotate
 echo "Configure logrotate"
 cat logrotate.d-docker > /etc/logrotate.d/docker
-cat logrotate.d-docker > /etc/logrotate.d/upgrade
+cat logrotate.d-upgrade > /etc/logrotate.d/upgrade
 
 # Tune sysctl
 echo "Kernel tune"
