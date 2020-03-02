@@ -3,7 +3,6 @@
 message="Malware found in the machine $(uname -a)"
 export message
 
-LOGFILE="/var/log/clamav/clamav-$(date +'%Y-%m-%d').log";
 DIRTOSCAN="/"; # seperar directorios si hay más de uno
 
 # Refresh database
