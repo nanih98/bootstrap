@@ -47,8 +47,8 @@ fi
   for i in $(docker ps | awk '{print $2}' | tail -n +2); do docker pull $i ; done
   # Recreate containers with the new image
   docker-compose up -d 
-  # Clean up old container
-  docker system prune -f
+  # Clean up old images
+  docker system prune -af
   fi
 
   if [[ "${restart}" = 'true' ]]; then
