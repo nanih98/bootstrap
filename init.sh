@@ -17,16 +17,18 @@ usage() {
   echo '  -r  Docker compose restart' >&2  
   echo '  -d  Docker compose down' >&2
   echo '  -u  Docker compose up' >&2
+  echo '  -c  Docker clean (prune)' >&2
   exit 1
 }
 
-while getopts prdu OPTION
+while getopts prduc OPTION
 do
   case ${OPTION} in
     p) pull='true' ;;
     r) restart='true' ;;
     d) down='true' ;;
     u) up='true' ;;
+    c) clean='true' ;;
     ?) usage ;;
   esac
 done
@@ -61,5 +63,8 @@ fi
   docker-compose up -d 
   fi
 
-exit 0
+  if [[ "${clean}" = 'true' ]]; then 
+  docker system prune -af 
+  fi
 
+exit 0
