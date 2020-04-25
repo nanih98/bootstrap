@@ -17,18 +17,18 @@ usage() {
   echo '  -r  Docker compose restart' >&2  
   echo '  -d  Docker compose down' >&2
   echo '  -u  Docker compose up' >&2
-  echo '  -c  Docker clean (prune)' >&2
+  echo '  -f  Flush redis cache' >&2
   exit 1
 }
 
-while getopts prduc OPTION
+while getopts prduf OPTION
 do
   case ${OPTION} in
     p) pull='true' ;;
     r) restart='true' ;;
     d) down='true' ;;
     u) up='true' ;;
-    c) clean='true' ;;
+    f) flush='true' ;;
     ?) usage ;;
   esac
 done
@@ -47,8 +47,8 @@ fi
   for i in $(docker ps | awk '{print $2}' | tail -n +2); do docker pull $i ; done
   # Recreate containers with the new image
   docker-compose up -d 
-  # Clean up old images
-  docker system prune -af
+  # Clean up old container
+  docker system prune -f
   fi
 
   if [[ "${restart}" = 'true' ]]; then
@@ -62,9 +62,9 @@ fi
   if [[ "${up}" = 'true' ]]; then
   docker-compose up -d 
   fi
-
-  if [[ "${clean}" = 'true' ]]; then 
-  docker system prune -af 
+  
+  if [[ "${flush}" = 'true' ]]; then
+  docker exec -it redis redis-cli FLUSHALL
   fi
 
 exit 0
